@@ -1,0 +1,334 @@
+/*mediaqueries*/
+$smartphone: 480px;
+$tabletPortrait: 767px;
+$tabletLandscape: 1024px;
+$desktop: 1174px;
+$largeScreen: 1400px;
+
+/*color*/
+
+$base-gray: #4a4a4a;
+$light-gray: #c6c6c6;
+$lighter-gray: #f4f4f4;
+$grat-lighter: #DEDEDE;
+$base-gray-light: #a3a1a1;
+$new-gray: #767879;
+$acqua: #ebf5f9;
+
+$dark-white: #fafafa;
+$blue-base-dark: #4d738a;
+
+$brand-primary: #4C7389;
+$brand-primary-dark: #325061;
+$brand-primary-darker: #203643;
+$brand-primary-lighter: #5A8DAA;
+
+$brand-secondary: #D9C828;
+$brand-secondary-darker: #9F9214;
+$brand-secondary-lighter: #F2E45C;
+
+$white: #fff;
+$white-opacity: rgba(255, 255, 255, 0.5);
+$black: #000;
+$black-opacity: rgba(0, 0, 0, 0.7);
+$black-gray: #313131;
+$orange: #e96656;
+
+$base-yellow: #F5A623;
+$light-yellow: #d7ca24;
+$lighter-yellow: rgb(251, 245, 162);
+$dark-yellow: #BB7D17;
+
+$base-blue: #547183;
+$base-blue-light: #5a8daa;
+$base-blue-dark: #325061;
+$base-blue-darker: #335062;
+$dark-blue: #203643;
+$lighter-blue: #5789ac;
+$base-blue-lighter: #eff4f7;
+$blue-gray-ligher: #cedce5;
+$blue-gray-ligher-dark: #acc6d3;
+
+$orange-lighter: #fef6e9;
+$dark-orange: #b57b0f;
+
+$base-link-color: #5a8daa;
+$base-link-color-hover: #547183;
+
+$border-color-gray: #ccc;
+
+/* Bootstrap Select */
+$bootstrap-select-white-bg: #fff;
+$bootstrap-select-white-tip-bg: $base-blue-light;
+$bootstrap-select-white-tip-color: $base-blue-light;
+$bootstrap-select-white-border-color: $border-color-gray;
+$bootstrap-select-white-li-hover-bg: #bdd1dd;
+$bootstrap-select-white-li-hover-color: #003e42;
+
+$focus: #f3f7f9;
+
+$base-opacity: 0.4;
+
+/*sizes*/
+$header-height: 60px;
+$base-padding: 8px;
+$border-height: 1px;
+$base-icon: 24px;
+$big-icon: 80px;
+$thumb-width: 115px;
+$thumb-height: 135px;
+$mini-thumb-height: 100px;
+$radius: 2px;
+$big-radius: $base-padding / 2;
+
+/*font*/
+$small-font: 12px;
+$base-font: 14px;
+$medium-font: 18px;
+$big-font: 24px;
+$extra-font: 60px;
+
+$claim-font: 40px;
+$small-claim-font: 33px;
+
+$image-src: "../../img/";
+
+/*mixin and utilities*/
+%clearfix {
+    *zoom: 1;
+
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin inline-block {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+@mixin bkg-image($image-name, $image-type, $repeat, $position1, $position2, $size) {
+    background-image: url($image-src + $image-name + "." + $image-type);
+    background-repeat: $repeat;
+    background-position: $position1 $position2;
+    background-size: $size;
+}
+
+@mixin background-image($height: 0px) {
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: inherit;
+    position: relative;
+    height: $height;
+
+    i {
+        min-height: inherit;
+        max-height: inherit;
+        width: inherit;
+        min-width: inherit;
+        max-width: inherit;
+        background-position: 50% 25%;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0);
+        position: relative;
+        z-index: 1;
+        background-repeat: no-repeat;
+        display: block;
+        height: inherit;
+    }
+}
+
+@mixin arrow($direction, $size, $color, $type: "") {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+
+    @if $direction == "up" {
+        border-bottom: $size solid $color;
+
+        @if $type != 1 {
+            border-left: (1 / 2 * $size) solid transparent;
+            border-right: (1 / 2 * $size) solid transparent;
+        }
+        @else {
+            border-left: $size solid transparent;
+            border-right: $size solid transparent;
+        }
+    }
+    @else if $direction == "down" {
+        border-top: $size solid $color;
+
+        @if $type != 1 {
+            border-left: (1 / 2 * $size) solid transparent;
+            border-right: (1 / 2 * $size) solid transparent;
+        }
+        @else {
+            border-left: $size solid transparent;
+            border-right: $size solid transparent;
+        }
+    }
+    @else if $direction == "left" {
+        border-right: $size solid $color;
+
+        @if $type != 1 {
+            border-top: (1 / 2 * $size) solid transparent;
+            border-bottom: (1 / 2 * $size) solid transparent;
+        }
+        @else {
+            border-top: $size solid transparent;
+            border-bottom: $size solid transparent;
+        }
+    }
+    @else if $direction == "right" {
+        @if $type != 1 {
+            border-top: (1 / 2 * $size) solid transparent;
+            border-bottom: (1 / 2 * $size) solid transparent;
+        }
+        @else {
+            border-top: $size solid transparent;
+            border-bottom: $size solid transparent;
+        }
+
+        border-left: $size solid $color;
+    }
+}
+
+@mixin vertical-align($align: center) {
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -ms-align-items: $align;
+    -moz-align-items: $align;
+    -webkit-align-items: $align;
+    align-items: $align;
+}
+
+@mixin respondTo($media) {
+    @if $media == smartphone {
+        @media (max-width: $smartphone) {
+            @content;
+        }
+    }
+    @else if $media == tabletPortrait {
+        @media (min-width: $tabletPortrait) {
+            @content;
+        }
+    }
+    @else if $media == tabletLandscape {
+        @media (min-width: $tabletLandscape) {
+            @content;
+        }
+    }
+    @else if $media == smallScreen {
+        @media (max-width: $desktop) {
+            @content;
+        }
+    }
+    @else if $media == desktop {
+        @media (min-width: $desktop) {
+            @content;
+        }
+    }
+    @else if $media == onlyTablet {
+        @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+            @content;
+        }
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+@mixin truncateText($overflow: ellipsis) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow;
+
+    // values are: clip, ellipsis, or a string
+}
+
+@mixin animation($name, $duration: 1000ms, $iterations: infinite, $timing-function: ease, $delay: 0ms) {
+    // There is a FF bug that requires all time values to have units, even 0 !!!!!!
+    -webkit-animation: $name $duration $iterations $timing-function $delay;
+    -moz-animation: $name $duration $iterations $timing-function $delay;
+    -o-animation: $name $duration $iterations $timing-function $delay;
+    animation: $name $duration $iterations $timing-function $delay;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin linear-gradient($start, $from, $middle1, $to1, $middle2, $to2, $stop, $to3) {
+    background: $start;
+    background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+    background: -moz-linear-gradient(center top, $start $from, $stop $to3);
+    background: -moz-gradient(center top, $start $from, $middle1 $to1, $middle2 $to2, $stop $to3);
+    background: -webkit-linear-gradient(top, $start $from, $middle1 $to1, $middle2 $to2, $stop $to3);
+    background: -o-linear-gradient(top, $start $from, $middle1 $to1, $middle2 $to2, $stop $to3);
+    background: -ms-linear-gradient(top, $start $from, $middle1 $to1, $middle2 $to2, $stop $to3);
+    background: linear-gradient(to bottom, $start $from, $middle1 $to1, $middle2 $to2, $stop $to3);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ie-hex-str($start)}', endColorstr='#{ie-hex-str($stop)}',GradientType=0 );
+}
+
+
+/*mediaqueries*/
+
+// Extra small screen / phone
+$screen-xs: 480px !default;
+$screen-xs-min: $screen-xs !default;
+$screen-phone: $screen-xs-min !default;
+
+// Small screen / tablet
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+$screen-tablet: $screen-sm-min !default;
+
+// Medium screen / desktop
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+$screen-desktop: $screen-md-min !default;
+
+// Large screen / wide desktop
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+$screen-lg-desktop: $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max: $screen-sm-min - 1 !default;
+$screen-sm-max: $screen-md-min - 1 !default;
+$screen-md-max: $screen-lg-min - 1 !default;
+
+/*checkbox color*/
+$checkbox-color: #5c8ea9;
+$checkbox-checked-color: #5c8ea9;
